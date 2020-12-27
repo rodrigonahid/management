@@ -1,0 +1,37 @@
+body{
+    background-color: whitesmoke
+}
+/* Sign in area*/
+.container{
+    margin-top: 40px;
+}
+#signin-input .input-group{
+    margin-top: 20px;
+}
+#signin-submit{
+    padding: 10px 50px;
+    border-radius: 25px;
+    margin-top: 20px;
+}
+.card{
+    border-radius: 12px;
+    
+}
+#voltar-forgotpwd{
+    margin-top: 25px;
+}
+.input-group .icone{
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    right: 15px;
+    visibility:hidden;
+}
+.success .icone .fa-check {
+    color: green;
+    visibility: visible;
+}
+.error .icone .fa-times {
+    color: red;
+    visibility: visible;
+}
