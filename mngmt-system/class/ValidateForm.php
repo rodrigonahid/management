@@ -50,10 +50,10 @@ class ValidateForm{
         $this->errors[$key]=$value;
     }
     public function errorCheck($input){
-        if($this->errors[$input]){
-            echo "error";
-        }else{
+        if(empty($this->errors[$input])){
             echo "success";
+        }else{
+            echo "error";
         }
         
     }
