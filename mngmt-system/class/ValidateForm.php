@@ -1,7 +1,7 @@
 <?php
 
 class ValidateForm{
-    private $data;
+    public $data;
     private $errors = [];
     private static $fields = ['nome','email','senha','repetir-senha'];
 
@@ -34,14 +34,17 @@ class ValidateForm{
     }
     public function validateSenha(){
         $senha = trim($this->data['senha']);
-        $repetirSenha = trim($this->data['senha']);
+        $repetirSenha = trim($this->data['repetir-senha']);
         if(empty($senha)){
             $this->addError('senha','Campo em branco');
         }
         if(empty($repetirSenha)){
             $this->addError('repetir-senha','Campo em branco');
         }
-        //PAREI AQUI, FUNÇAO PARA VALIDAR SE A SENHA NAO REPETIR
+        if($senha!=$repetirSenha){
+            $this->addError('senha','Senhas diferentes');
+            $this->addError('repetir-senha','Senhas diferentes');
+        }
     }
     public function addError($key,$value){
         $this->errors[$key]=$value;
@@ -53,6 +56,9 @@ class ValidateForm{
             echo "success";
         }
         
+    }
+    public function keepForm($value){
+        echo $this->data[$value];
     }
 
 }
