@@ -1,7 +1,7 @@
 <?php
 
 class ValidateForm{
-    public $data;
+    private $data;
     private $errors = [];
     private static $fields = ['nome','email','senha','repetir-senha'];
 
