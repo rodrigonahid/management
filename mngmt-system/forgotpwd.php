@@ -1,3 +1,11 @@
+<?php require_once("class/ValidateForm.php");
+
+    if(isset($_POST['submit'])){
+      $validate = new ValidateForm($_POST);  
+      $erros= $validate->validateForm();
+      header('Location: index.php');
+    }
+?>
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -19,27 +27,58 @@
             <div class="col-lg-10">
                 <div class="card-group">
                     <div class="card p-4">
-                        <h2 class="text-center text-primary">Entrar</h1>
+                        <h2 class="text-center text-primary">Registre-se</h1>
                         <hr>
-                        <form action="#" method="post" >
+                        <form class="form" action="signup.php" method="post" >
                             <div id="signin-input">
-                                <div class="text-center">
-                                    <p>Para recuperar sua senha, digite o e-mail registrado na conta e lhe enviaremos um e-mail.</p>
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="far fa-envelope fa-lg"></i></span>
-                                    <input type="email" name="email" class="form-control" placeholder="Digite seu e-mail" aria-label="Amount (to the nearest dollar)">
+                                <div class="input-group <?php
+                                    if(isset($_POST['submit'])){
+                                        $validate->errorCheck('nome');
+                                    }
+                                ?>">
+                                    <span class="input-group-text"><i class="fas fa-user fa-lg"></i></span>
+                                    <input id="nome" name="nome" type="text check" cl placeholder="Nome Completo" class="form-control" value="<?php if(isset($_POST['submit'])){ $validate->keepForm('nome');}?>">
+                                    <span class="icone"><i class="fas fa-check"></i></span> 
+                                    <span class="icone"><i class="fas fa-times"></i></span>
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="col-4">
-                                        <a class="btn btn-secondary" id="voltar-forgotpwd" href="index.php">Voltar</a>
-                                    </div>
-                                    <div class="col-8">
-                                        <input id="signin-submit" type="submit" name="signin-submit" value="Resetar senha" class="btn btn-primary">
-                                    </div>
+                                <div class="input-group <?php
+                                    if(isset($_POST['submit'])){
+                                        $validate->errorCheck('email');
+                                    }
+                                ?>">
+                                    <span class="input-group-text"><i class="far fa-envelope fa-lg"></i></span>
+                                    <input id="email" name="email" type="email" class="form-control" placeholder="E-mail" aria-label="Amount (to the nearest dollar)" value="<?php if(isset($_POST['submit'])){ $validate->keepForm('email');}?>">
+                                    <span class="icone"><i class="fas fa-check"></i></span> 
+                                    <span class="icone"><i class="fas fa-times"></i></span>
                                 </div>
-                            </div>
+                                <div class="input-group <?php
+                                    if(isset($_POST['submit'])){
+                                        $validate->errorCheck('senha');
+                                    }
+                                ?>">
+                                    <span class="input-group-text"><i class="fas fa-key fa-lg"></i></span>
+                                    <input id="senha" type="password" name="senha" class="form-control" placeholder="Senha" aria-label="Amount (to the nearest dollar)">
+                                    <span class="icone"><i class="fas fa-check"></i></span> 
+                                    <span class="icone"><i class="fas fa-times"></i></span>
+                                </div>
+                                <div class="input-group <?php
+                                    if(isset($_POST['submit'])){
+                                        $validate->errorCheck('repetir-senha');
+                                    }
+                                ?>">
+                                    <span class="input-group-text"><i class="fas fa-key fa-lg"></i></span>
+                                    <input id="repetir-senha" type="password" name="repetir-senha" class="form-control" placeholder="Confirmar senha" aria-label="Amount (to the nearest dollar)">
+                                    <span class="icone"><i class="fas fa-check"></i></span> 
+                                    <span class="icone"><i class="fas fa-times"></i></span>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <input id="signin-submit" type="submit" name="submit" value="Registrar" class="btn btn-primary">
+                                    
+                                </div>
+                                <div>
+                                    <a href="index.php">Fazer Login</a>
+                                </div>
                         </form>
                     </div>
                 </div>
@@ -49,5 +88,6 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+    
   </body>
 </html>
